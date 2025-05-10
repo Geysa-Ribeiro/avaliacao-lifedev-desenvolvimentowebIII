@@ -1,0 +1,42 @@
+.dashboard {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;    
+    font-size: 2rem;
+    color: #333;
+}
+
+.postList {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.postItem:hover {
+    transform: translateY(-5px);
+}
+
+.postItem h3 {
+    margin: 0 0 0.5rem;
+    color: #0077cc;
+}
+
+.postItem p {
+    margin: 0.5rem 0;
+    color: #555;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover h3 {
+    text-decoration: underline;
+}

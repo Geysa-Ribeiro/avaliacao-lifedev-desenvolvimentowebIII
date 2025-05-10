@@ -4,13 +4,13 @@ import { getFirestore } from "firebase/firestore"
 import { getAuth } from "firebase/auth"
 
 const firebaseConfig = {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: "",
-    measurementId: ""
+    apiKey: "AIzaSyAH4oxvwsKyXLz2CZnWSU74ecEDydCMZcY",
+    authDomain: "lifedev-toppan.firebaseapp.com",
+    projectId: "lifedev-toppan",
+    storageBucket: "lifedev-toppan.appspot.com",
+    messagingSenderId: "1001517255216",
+    appId: "1:1001517255216:web:8f2d6079569557e8333bf5",
+    measurementId: "G-S7SLSTH6FP"
 };
 
 const app = initializeApp(firebaseConfig)

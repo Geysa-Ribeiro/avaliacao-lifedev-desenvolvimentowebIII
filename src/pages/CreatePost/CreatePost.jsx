@@ -1,19 +1,41 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./CreatePost.module.css";
+import { db } from "../../firebase/config";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { useAuth } from "../../context/AuthContext";
 
 function CreatePost() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const navigate = useNavigate();
+    const [error, setError] = useState(null);
+    const {currentUser}= useAuth();
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        console.log("Novo post criado:", { title, content });
-
-        alert("Post criado com sucesso!");
-
-        setTitle("");
-        setContent("");
+        if (!currentUser) {
+            setError("Você precisa estar logado para criar um post.");
+            return;
+        }
+        setError(null);
+        setIsSubmitting(true);
+        try {
+            await addDoc(collection(db,'posts'), {
+                title,
+                content,
+                createdAt: serverTimestamp(),
+                authorId: currentUser.uid,
+                authorEmail: currentUser.email,
+            });
+        navigate('/dashboard');
+        } catch (error) {
+            console.error('Erro ao salvar post:', error);
+            setError("Erro ao salvar o post. Tente novamente.");
+        } finally {
+            setIsSubmitting(false);
+        }    
     };
 
     return (
